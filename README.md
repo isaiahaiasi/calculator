@@ -4,12 +4,12 @@ The idea is to make a very simple calculator. No PEMDAS.
 No eval() or new Function() (wtf, I had no idea "new Function" was a thing, that's wild...)
 
 ## TO-DO LIST
-- Create functions for all the basic math operators found on simple calculators:
-  - add
-  - subtract
-  - multiply
-  - divide
-- Create a function `operate` that takes an operator and 2 numbers, then calls one of the above functions on the numbers.
+✔️ Create functions for all the basic math operators found on simple calculators:
+  - ✔️ add
+  - ✔️ subtract
+  - ✔️ multiply
+  - ✔️ divide
+- ✔️ Create a function `operate` that takes an operator and 2 numbers, then calls one of the above functions on the numbers.
 - Create a basic HTML calculator w buttons for digits, operators, equals, clear
 - Create functions to display in the calculator what numbers are clicked
 - Finish the owl
