@@ -26,7 +26,6 @@ function operate(op, a, b) {
   return ops[op](a, b);
 }
 
-
 let argA = '';
 let argB = '';
 let loggedOp = 'add';
@@ -41,6 +40,13 @@ function clear() {
 }
 
 function equals() {
+  let val = evaluate();
+
+  loggedOp = 'add';
+  argA = '';
+  calcTopScreen.textContent = '';
+  argB = val;
+  calcScreen.textContent = argB;
 }
 
 function decimal() {
@@ -114,15 +120,21 @@ function sendDigit(n) {
 //  However, this is only really relevant if I add proper validation.
 //  If it's just one function call, it's not worth it.
 function performOp(op) {
-  let val = operate(loggedOp, +argA, +argB); 
-
-  console.log(`${argA} ${opSymbols[loggedOp]} ${argB} = ${val}`);
-
-  // TODO: round val before putting it out to the screen
+  let val = evaluate();
 
   loggedOp = op;
   argA = val;
   calcTopScreen.textContent = argA + " " + opSymbols[op];
   calcScreen.textContent = "";
   argB = "";
+}
+
+function evaluate() {
+  let val = operate(loggedOp, +argA, +argB); 
+
+  console.log(`${argA} ${opSymbols[loggedOp]} ${argB} = ${val}`);
+
+  // TODO: round val before putting it out to the screen
+
+  return val;
 }
