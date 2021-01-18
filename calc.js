@@ -4,6 +4,7 @@ const MAX_NUM_LEN = 10;
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
+// Idk if this counts as "snarky," per project guidelines, but I'm lazy lol
 const divide = (a, b) => b != 0 ? a / b : 2318008;
 
 // Don't really have to freeze, but I wanted something more like an enum
@@ -26,21 +27,34 @@ function operate(op, a, b) {
 }
 
 
-let argA = "";
-let argB = "";
-let loggedOp = "add";
+let argA = '';
+let argB = '';
+let loggedOp = 'add';
 
 
 // OTHER OPERATIONS
 function clear() {
-  [argA, argB] = "";
-  op = null;
-  [calcScreen.textContent, calcTopScreen.textContent] = "";
+  argA = '';
+  argB = '';
+  loggedOp = 'add';
+  [calcScreen.textContent, calcTopScreen.textContent] = '';
 }
 
-function equals() {}
-function decimal() {}
-function backspace() {}
+function equals() {
+}
+
+function decimal() {
+  if (!argB.includes('.')) {
+    sendDigit('.');
+  } else {
+    console.log('argB already contains a decimal!');
+  }
+}
+
+function backspace() {
+  argB = argB.slice(0,argB.length - 1);
+  calcScreen.textContent = argB;
+}
 
 // Not sure yet where to validate input...
 
@@ -63,11 +77,20 @@ buttonElms.forEach(btn => {
     btn.addEventListener('click', () => {
       sendDigit(btn.getAttribute('data-num'));
     });
+
   } else if (btnClasses.includes('op-btn')) {
-    btn.addEventListener('click', () => {
-      performOp(btn.getAttribute('data-op'));
-    });
-  } else if (btnClasses.includes('spc-btn')) {
+    const btnOp = btn.getAttribute('data-op');
+
+    if (btnOp in ops) {
+      btn.addEventListener('click', () => {
+        performOp(btnOp);
+      });
+    } else if (btnOp in spcOps) {
+      btn.addEventListener('click', () => {
+        spcOps[btnOp]();
+      });
+    }
+    
   } else {
     console.warn("invalid btn found");
   }
@@ -83,6 +106,13 @@ function sendDigit(n) {
 
 // Called when an op button is pressed
 // TODO: Probably needs better validation...
+// TODO: Split into two functions:
+//    - EVALUATE (validation & performing the operation)
+//    - PUSH (update top & bottom screens, set new loggedOp, etc)
+//  I need to split this because special ops, ie CLEAR, will want to use the
+//  same logic for evaluation, but will update things differently...
+//  However, this is only really relevant if I add proper validation.
+//  If it's just one function call, it's not worth it.
 function performOp(op) {
   let val = operate(loggedOp, +argA, +argB); 
 
@@ -96,6 +126,3 @@ function performOp(op) {
   calcScreen.textContent = "";
   argB = "";
 }
-
-
-
