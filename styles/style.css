@@ -82,7 +82,7 @@ button:focus {
 
   display:flex;
   flex-direction:column;
-  justify-content:space-around;
+  justify-content:space-between;
 
   background-color:rgb(14, 18, 29);
   border-radius:10px;
