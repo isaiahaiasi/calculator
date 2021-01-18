@@ -3,12 +3,46 @@
   <meta charset="UTF-8">
   <title>C4LC</title>
   <script defer src="calc.js"></script>
-  <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/meyerreset.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+  <header>C4lcul4t0r</header>
   <main>
-    <header>C4lcul4t0r</header>
-    <main>123456.0789</main>
+    <div class="calc-body">
+      <div class="calc-screen">
+        <div id="num-record">1233 + </div>
+        <div id="num-input">123.05930</div>
+      </div>
+      <div class="btn-group">
+        <div class="num-btn-group">
+          <button class="num-btn" data-num="7">7</button>
+          <button class="num-btn" data-num="8">8</button>
+          <button class="num-btn" data-num="9">9</button>
+          <button class="num-btn" data-num="4">4</button>
+          <button class="num-btn" data-num="5">5</button>
+          <button class="num-btn" data-num="6">6</button>
+          <button class="num-btn" data-num="1">1</button>
+          <button class="num-btn" data-num="2">2</button>
+          <button class="num-btn" data-num="3">3</button>
+        </div>
+        <div class="ops-btn-group">
+          <button class="op-btn" data-op="divide">/</button>
+          <button class="op-btn" data-op="multiply">x</button>
+          <button class="op-btn" data-op="subtract">-</button>
+          <button class="op-btn" data-op="add">+</button>
+        </div>
+        <button class="spc-btn grid-wide" data-func="backspace"><<</button>
+        <button class="spc-btn" data-func="clear">C</button>
+        
+        <button class="num-btn grid-wide" data-num="0">0</button>
+        <button class="spc-btn" data-func="decimal">.</button>
+        <button class="spc-btn" data-func="equals">=</button>
+      </div>
+    </div>
+    <div class="calc-footer">Little bit of txt</div>
   </main>
+  <footer>
+    Made by isaiahaiasi as part of The Odin Project
+  </footer>
 </body>

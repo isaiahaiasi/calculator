@@ -4,7 +4,7 @@ The idea is to make a very simple calculator. No PEMDAS.
 No eval() or new Function() (wtf, I had no idea "new Function" was a thing, that's wild...)
 
 ## TO-DO LIST
-✔️ Create functions for all the basic math operators found on simple calculators:
+- ✔️ Create functions for all the basic math operators found on simple calculators:
   - ✔️ add
   - ✔️ subtract
   - ✔️ multiply
