@@ -21,8 +21,6 @@ body {
 }
 
 header {
-  text-align:left;
-  justify-self:left;
   font-size:3em; 
   font-weight:900;
 }
@@ -38,27 +36,36 @@ main {
   min-height:200px;
   width:90%;
   min-width:300px;
-  display:flex;
+  /* display:flex;
   flex-direction:column;
   justify-content:center;
-  margin:2em;
+  margin:2em; */
 }
 
 button {
   font-size:1.7em;
   margin:3px;
-  background-color:rgba(47, 79, 79, 0.637);
+  background-color:rgba(17, 31, 31, 0.466);
   border: none;
+  border-bottom: solid 3px rgba(0, 0, 0, 0.63);
+  border-right: solid 2px rgba(0, 0, 0, 0.63);
   border-radius: 10px;
   overflow:none;
 }
 
 button:active {
   background-color:rgba(47, 79, 79, 1);
+  border:none;
+  border-top: solid 3px rgba(0, 0, 0, 0.63);
+  border-left: solid 2px rgba(0, 0, 0, 0.63);
 }
 
 button:focus {
   outline:none;
+}
+
+a {
+  color:white;
 }
 
 .calc-body {
@@ -68,9 +75,8 @@ button:focus {
   margin:.3em 1em .3em 1em;
   padding:20px;
   border: 1px solid rgba(0, 0, 0, 0.493);
-  border-radius:20px;
-  background-color:slategrey;
-  box-shadow:.5em 2em 3em rgba(10, 4, 17, 0.534);
+  background-color:rgba(97, 126, 153, 0.521);
+  box-shadow:.5em 2em 1em rgba(10, 4, 17, 0.534);
 }
 
 .calc-screen {
@@ -122,9 +128,18 @@ button:focus {
   grid-template-rows: repeat(4, 1fr);
 }
 
+.op-btn {
+  background-color:rgba(99, 39, 39, 0.582);
+}
+
+.op-btn:active {
+  background-color:rgba(71, 15, 15, 0.582);
+}
+
 .grid-wide {
   grid-column: auto / span 2;
 }
+
 @media (min-width: 800px) {
   main {
     max-height: 600px;

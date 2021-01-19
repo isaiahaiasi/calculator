@@ -1,5 +1,6 @@
 const MAX_NUM_LEN = 10;
 
+//#region OPERATION HANDLING
 // BASIC OPERATIONS
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -15,6 +16,10 @@ const ops = Object.freeze({
   divide,
 });
 
+function operate(op, a, b) {
+  return ops[op](a, b);
+}
+
 const opSymbols = Object.freeze({
   'add':'+',
   'subtract':'-',
@@ -22,9 +27,6 @@ const opSymbols = Object.freeze({
   'divide': '/',
 });
 
-function operate(op, a, b) {
-  return ops[op](a, b);
-}
 
 let argA = '';
 let argB = '';
@@ -62,8 +64,6 @@ function backspace() {
   calcScreen.textContent = argB;
 }
 
-// Not sure yet where to validate input...
-
 const spcOps = Object.freeze({
   equals,
   clear,
@@ -71,7 +71,10 @@ const spcOps = Object.freeze({
   backspace,
 });
 
-// DOM
+//#endregion
+
+//#region DOM MANIPULATION
+
 const calcScreen = document.querySelector('#num-input');
 const calcTopScreen = document.querySelector('#num-record');
 const btnCntr = document.querySelector('.btn-group');
@@ -102,6 +105,8 @@ buttonElms.forEach(btn => {
   }
 });
 
+//#endregion
+
 // Sent from a number button to the calculator "screen"
 function sendDigit(n) {
   if (calcScreen.textContent.length < MAX_NUM_LEN) {
@@ -111,17 +116,9 @@ function sendDigit(n) {
 }
 
 // Called when an op button is pressed
-// TODO: Probably needs better validation...
-// TODO: Split into two functions:
-//    - EVALUATE (validation & performing the operation)
-//    - PUSH (update top & bottom screens, set new loggedOp, etc)
-//  I need to split this because special ops, ie CLEAR, will want to use the
-//  same logic for evaluation, but will update things differently...
-//  However, this is only really relevant if I add proper validation.
-//  If it's just one function call, it's not worth it.
 function performOp(op) {
   let val = evaluate();
-
+  
   loggedOp = op;
   argA = val;
   calcTopScreen.textContent = argA + " " + opSymbols[op];
@@ -129,6 +126,7 @@ function performOp(op) {
   argB = "";
 }
 
+// TODO: Add rounding, real validation, probably other stuff...
 function evaluate() {
   let val = operate(loggedOp, +argA, +argB); 
 
