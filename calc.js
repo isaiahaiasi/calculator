@@ -127,15 +127,22 @@ function performOp(op) {
 
 // TODO: real validation?
 function evaluate() {
-  let val = "" + operate(loggedOp, +argA, +argB); 
+  let val = "" + operate(loggedOp, +argA, +argB);
+  
+  if (val.length < MAX_NUM_LEN) {
+    return val;
+  }
+
+  if (val.includes('e') || val.split('.')[0].length > MAX_NUM_LEN) {
+    val = "" + Number.parseFloat(val).toExponential(MAX_NUM_LEN - 4);
+  } else {
+    val = Number.parseFloat(val).toFixed(
+        Math.max(MAX_NUM_LEN - val.split('.')[0].length, 
+        0
+    ));
+  }
 
   console.log(`${argA} ${opSymbols[loggedOp]} ${argB} = ${val}`);
-
-  // Round decimals
-  let decimalPosition = val.indexOf('.');
-  if (decimalPosition >= 0 && val.length > MAX_NUM_LEN) {
-    val = val.slice(0, Math.max(decimalPosition, MAX_NUM_LEN));
-  }
 
   return val;
 }
