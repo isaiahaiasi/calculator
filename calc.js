@@ -128,11 +128,18 @@ function performOp(op) {
 
 // TODO: Add rounding, real validation, probably other stuff...
 function evaluate() {
-  let val = operate(loggedOp, +argA, +argB); 
+  let val = "" + operate(loggedOp, +argA, +argB); 
 
   console.log(`${argA} ${opSymbols[loggedOp]} ${argB} = ${val}`);
 
   // TODO: round val before putting it out to the screen
+  // If the returned number contains a decimal, and the length is longer than max len
+  // Then truncate the number by the max of length - max len and length - position of decimal
+  let decimalPosition = val.indexOf('.');
+
+  if (decimalPosition >= 0 && val.length > MAX_NUM_LEN) {
+    val = val.slice(0, Math.max(decimalPosition, MAX_NUM_LEN));
+  }
 
   return val;
 }
