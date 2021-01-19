@@ -1,15 +1,14 @@
-const MAX_NUM_LEN = 10;
+const MAX_NUM_LEN = 9;
 
-//#region OPERATION HANDLING
+//#region OPERATION LOGIC
 // BASIC OPERATIONS
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
-// Idk if this counts as "snarky," per project guidelines, but I'm lazy lol
+// not quite "snarky," but close enough
 const divide = (a, b) => b != 0 ? a / b : 2318008;
 
-// Don't really have to freeze, but I wanted something more like an enum
-const ops = Object.freeze({
+const opFuncs = Object.freeze({
   add,
   subtract,
   multiply,
@@ -17,7 +16,7 @@ const ops = Object.freeze({
 });
 
 function operate(op, a, b) {
-  return ops[op](a, b);
+  return opFuncs[op](a, b);
 }
 
 const opSymbols = Object.freeze({
@@ -64,7 +63,7 @@ function backspace() {
   calcScreen.textContent = argB;
 }
 
-const spcOps = Object.freeze({
+const spcOpFuncs = Object.freeze({
   equals,
   clear,
   decimal,
@@ -90,13 +89,13 @@ buttonElms.forEach(btn => {
   } else if (btnClasses.includes('op-btn')) {
     const btnOp = btn.getAttribute('data-op');
 
-    if (btnOp in ops) {
+    if (btnOp in opFuncs) {
       btn.addEventListener('click', () => {
         performOp(btnOp);
       });
-    } else if (btnOp in spcOps) {
+    } else if (btnOp in spcOpFuncs) {
       btn.addEventListener('click', () => {
-        spcOps[btnOp]();
+        spcOpFuncs[btnOp]();
       });
     }
     
@@ -126,17 +125,14 @@ function performOp(op) {
   argB = "";
 }
 
-// TODO: Add rounding, real validation, probably other stuff...
+// TODO: real validation?
 function evaluate() {
   let val = "" + operate(loggedOp, +argA, +argB); 
 
   console.log(`${argA} ${opSymbols[loggedOp]} ${argB} = ${val}`);
 
-  // TODO: round val before putting it out to the screen
-  // If the returned number contains a decimal, and the length is longer than max len
-  // Then truncate the number by the max of length - max len and length - position of decimal
+  // Round decimals
   let decimalPosition = val.indexOf('.');
-
   if (decimalPosition >= 0 && val.length > MAX_NUM_LEN) {
     val = val.slice(0, Math.max(decimalPosition, MAX_NUM_LEN));
   }

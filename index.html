@@ -8,39 +8,36 @@
 </head>
 <body>
   <header>C4lcul4t0r</header>
-  <main>
-    <div class="calc-body">
-      <div class="calc-screen">
-        <div id="num-record"></div>
-        <div id="num-input"></div>
-      </div>
-      <div class="btn-group">
-        <div class="num-btn-group">
-          <button class="num-btn" data-num="7">7</button>
-          <button class="num-btn" data-num="8">8</button>
-          <button class="num-btn" data-num="9">9</button>
-          <button class="num-btn" data-num="4">4</button>
-          <button class="num-btn" data-num="5">5</button>
-          <button class="num-btn" data-num="6">6</button>
-          <button class="num-btn" data-num="1">1</button>
-          <button class="num-btn" data-num="2">2</button>
-          <button class="num-btn" data-num="3">3</button>
-        </div>
-        <div class="ops-btn-group">
-          <button class="op-btn" data-op="divide">/</button>
-          <button class="op-btn" data-op="multiply">x</button>
-          <button class="op-btn" data-op="subtract">-</button>
-          <button class="op-btn" data-op="add">+</button>
-        </div>
-        <button class="op-btn grid-wide" data-op="backspace"><<</button>
-        <button class="op-btn" data-op="clear">C</button>
-        
-        <button class="num-btn grid-wide" data-num="0">0</button>
-        <button class="op-btn" data-op="decimal">.</button>
-        <button class="op-btn" data-op="equals">=</button>
-      </div>
+  <main class="calc-body">
+    <div class="calc-screen">
+      <div id="num-record"></div>
+      <div id="num-input"></div>
     </div>
-    <div class="calc-footer">PEMDAS-3000</div>
+    <div class="btn-group">
+      <div class="num-btn-group">
+        <button class="num-btn" data-num="7">7</button>
+        <button class="num-btn" data-num="8">8</button>
+        <button class="num-btn" data-num="9">9</button>
+        <button class="num-btn" data-num="4">4</button>
+        <button class="num-btn" data-num="5">5</button>
+        <button class="num-btn" data-num="6">6</button>
+        <button class="num-btn" data-num="1">1</button>
+        <button class="num-btn" data-num="2">2</button>
+        <button class="num-btn" data-num="3">3</button>
+      </div>
+      <div class="ops-btn-group">
+        <button class="op-btn op-color" data-op="divide">/</button>
+        <button class="op-btn op-color" data-op="multiply">*</button>
+        <button class="op-btn op-color" data-op="subtract">-</button>
+        <button class="op-btn op-color" data-op="add">+</button>
+      </div>
+      <button class="op-btn destructive-color grid-wide" data-op="backspace"><<</button>
+      <button class="op-btn destructive-color" data-op="clear">C</button>
+      
+      <button class="num-btn grid-wide" data-num="0">0</button>
+      <button class="op-btn" data-op="decimal">.</button>
+      <button class="op-btn eq-color" data-op="equals">=</button>
+    </div>
   </main>
   <footer>
     Made by <a href="https://github.com/isaiahaiasi/calculator">isaiahaiasi</a> as part of The Odin Project
